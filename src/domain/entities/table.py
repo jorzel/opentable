@@ -1,3 +1,8 @@
+from typing import Optional
+
+from ..events.table import BookedTable
+
+
 class TablePersonsException(Exception):
     pass
 
@@ -21,3 +26,8 @@ class Table:
         if persons > self.max_persons:
             return False
         return True
+
+    def book(self, persons: int) -> Optional[BookedTable]:
+        if self.can_book(persons):
+            return BookedTable(is_open=False)
+        return None

@@ -1,5 +1,5 @@
-from src.domain.table import Table
-from src.domain.restaurant import Restaurant
+from src.domain.entities.table import Table
+from src.domain.entities.restaurant import Restaurant
 
 
 def test_restaurant_has_open_table_should_pass_if_any_table_in_restaurant_is_open_in_desired_capacity():
