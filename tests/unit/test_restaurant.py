@@ -22,3 +22,10 @@ def test_restaurant_has_open_table_should_failed_if_all_tables_with_desired_capa
     restaurant = Restaurant(tables=[occupied_table, open_table])
 
     assert not restaurant.has_open_table(3)
+
+
+def test_restaurant_book_table_should_pass_and_return_event_when_table_is_open_and_has_persons_capacity():
+    open_table = Table(max_persons=5, is_open=True)
+    restaurant = Restaurant(tables=[open_table])
+
+    assert restaurant.book_table(3)

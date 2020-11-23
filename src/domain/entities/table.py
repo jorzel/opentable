@@ -1,9 +1,8 @@
-from typing import Optional
-
-from ..events.table import BookedTable
-
-
 class TablePersonsException(Exception):
+    pass
+
+
+class BookedTableException(Exception):
     pass
 
 
@@ -19,7 +18,7 @@ class Table:
     def can_book(self, persons: int) -> bool:
         if persons < 0:
             raise TablePersonsException(
-                f"Argument persons must be positive integer, passed instead: {persons}"
+                f"{self} can_book argument persons must be positive integer, passed instead: {persons}"
             )
         if not self.is_open:
             return False
@@ -27,7 +26,10 @@ class Table:
             return False
         return True
 
-    def book(self, persons: int) -> Optional[BookedTable]:
+    def book(self, persons: int) -> None:
         if self.can_book(persons):
-            return BookedTable(is_open=False)
-        return None
+            self.is_open = False
+        else:
+            raise BookedTableException(
+                "{self} cannot be booked, becuase is not open now or is too small"
+            )
