@@ -7,7 +7,8 @@ class BookedTableException(Exception):
 
 
 class Table:
-    def __init__(self, max_persons: int, is_open: bool = True):
+    def __init__(self, id: int, max_persons: int, is_open: bool = True):
+        self.id = id
         if max_persons < 0:
             raise TablePersonsException(
                 f"Table max_persons attribute must be positive integer, passed instead: {max_persons}"
