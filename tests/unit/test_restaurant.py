@@ -28,4 +28,6 @@ def test_restaurant_book_table_should_pass_and_return_event_when_table_is_open_a
     open_table = Table(max_persons=5, is_open=True)
     restaurant = Restaurant(tables=[open_table])
 
-    assert restaurant.book_table(3)
+    table = restaurant.book_table(3)
+
+    assert not table.is_open
