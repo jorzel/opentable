@@ -1,2 +1,3 @@
 nameko==2.13.0
+nameko-sqlalchemy==1.5.0
 sqlalchemy==1.3.20

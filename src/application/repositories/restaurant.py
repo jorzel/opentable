@@ -1,8 +1,8 @@
-from typing import Optional
+from typing import List, Optional
 
 from sqlalchemy.orm import Session, Query
 
-from infrastructure.orm.restaurant import Restaurant
+from ...domain.entities.restaurant import Restaurant
 
 
 class SQLAlchemyRestaurantRepository:
@@ -15,6 +15,9 @@ class SQLAlchemyRestaurantRepository:
 
     def get(self, restaurant_id: int) -> Optional[Restaurant]:
         return self.queryset.get(restaurant_id)
+
+    def all(self) -> List[Restaurant]:
+        return self.queryset.all()
 
     def add(self, restaurant: Restaurant) -> None:
         self.session.add(restaurant)

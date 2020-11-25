@@ -4,8 +4,7 @@ from .table import Table
 
 
 class Restaurant:
-    def __init__(self, id: int, tables: List[Table]):
-        self.id = id
+    def __init__(self, tables: List[Table]):
         self.tables = sorted(tables, key=lambda table: table.max_persons)
 
     def _get_open_table(self, persons: int) -> Optional[Table]:
