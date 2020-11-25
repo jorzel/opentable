@@ -1,6 +1,6 @@
 from typing import List, Optional
 
-from .table import Table
+from .table import Table, BookedTableException
 
 
 class Restaurant:
@@ -23,4 +23,4 @@ class Restaurant:
         if table:
             table.book(persons)
             return table
-        return None
+        raise BookedTableException("No open tables in restaurant")
