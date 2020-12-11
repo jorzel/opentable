@@ -1,9 +1,9 @@
 from sqlalchemy import Column, ForeignKey, Table as sa_Table, Integer, Boolean
 from sqlalchemy.orm import mapper, relationship
 
-from .db import metadata
-from ..domain.entities.table import Table
-from ..domain.entities.restaurant import Restaurant
+from src.domain.entities.table import Table
+from src.domain.entities.restaurant import Restaurant
+from .setup import metadata
 
 restaurant = sa_Table(
     "restaurant",

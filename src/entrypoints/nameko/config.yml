@@ -1,5 +1,5 @@
 WEB_SERVER_ADDRESS: 0.0.0.0:8000
 DB_URIS:
-  "http_service:Base": "sqlite:///mydb.db"
+  "booking_service:Base": "sqlite:///mydb.db"
 
 AMQP_URI: ${AMQP_URI:pyamqp://guest:guest@localhost}

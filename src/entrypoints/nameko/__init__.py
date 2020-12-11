@@ -5,14 +5,14 @@ from nameko.web.handlers import http
 from nameko_sqlalchemy import Database
 from werkzeug.wrappers import Request, Response
 
-from ..application.repositories.restaurant import SQLAlchemyRestaurantRepository
-from ..domain.factories import RestaurantFactory
-from ..domain.serializers import restaurant_serializer, table_serializer
-from ..infrastructure.db import Base
+from src.domain.factories import RestaurantFactory
+from src.domain.serializers import restaurant_serializer, table_serializer
+from src.infrastructure.db.setup import Base
+from src.infrastructure.db.repository import SQLAlchemyRestaurantRepository
 
 
-class HttpService:
-    name = "http_service"
+class BookingService:
+    name = "booking_service"
 
     db = Database(Base)
 
@@ -41,6 +41,8 @@ class HttpService:
         persons: int = request_params.get("persons")
         repo = SQLAlchemyRestaurantRepository(self.db.session)
         restaurant = repo.get(restaurant_id)
+        if not restaurant:
+            raise Exception("NotExist")
         table = restaurant.book_table(persons)
         self.db.session.commit()
         return Response(
