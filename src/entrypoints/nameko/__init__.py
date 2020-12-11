@@ -6,6 +6,7 @@ from nameko_sqlalchemy import Database
 from werkzeug.wrappers import Request, Response
 
 from src.application.services.booking_table import BookingTableApplicationService
+from src.application.uow import SQLAlchemyUnitOfWork
 from src.domain.commands import BookTable
 from src.domain.factories import RestaurantFactory
 from src.domain.serializers import restaurant_serializer
@@ -44,8 +45,8 @@ class BookingService:
             restaurant_id=restaurant_id, persons=request_params["persons"]
         )
         booking_table_service = BookingTableApplicationService(
-            SQLAlchemyRestaurantRepository(self.db.session)
+            SQLAlchemyRestaurantRepository(self.db.session),
+            SQLAlchemyUnitOfWork(self.db.session),
         )
         booking_table_service.book_table(command)
-        self.db.session.commit()
         return Response(f"Restaurant: {restaurant_id} table booked")
