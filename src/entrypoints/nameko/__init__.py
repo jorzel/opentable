@@ -31,16 +31,6 @@ class BookingService:
         repo = SQLAlchemyRestaurantRepository(self.db.session)
         return Response(json.dumps([restaurant_serializer(r) for r in repo.all()]))
 
-    @http("POST", "/restaurants")
-    def restaurant(self, request: Request) -> Response:
-        request_params = json.loads(request.data)
-        tables_specifiation: List[int] = request_params.get("tables_specification", [])
-        repo = SQLAlchemyRestaurantRepository(self.db.session)
-        restaurant = RestaurantFactory().create(tables_specifiation)
-        repo.add(restaurant)
-        self.db.session.commit()
-        return Response(f"Added restaurant: {restaurant_serializer(restaurant)}")
-
     @http("POST", "/restaurants/<int:restaurant_id>")
     def book_table(self, request: Request, restaurant_id: int) -> Response:
         request_params = json.loads(request.data)
