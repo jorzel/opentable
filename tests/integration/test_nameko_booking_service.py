@@ -10,3 +10,6 @@ def test_booking_service_book_table_should_pass_when_table_in_restaurant_is_avai
 
     assert not session.dirty
     assert table.is_open is False
+    booking_service.dispatcher.assert_called_once_with(
+        "BookedTable", {"is_open": False}
+    )

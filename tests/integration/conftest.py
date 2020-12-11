@@ -42,7 +42,7 @@ def db_session(db_connection):
 def booking_service(db_session):
     mock_db = Mock()
     mock_db.session = db_session
-    yield worker_factory(BookingService, db=mock_db)
+    yield worker_factory(BookingService, db=mock_db, dispatcher=Mock())
 
 
 @pytest.fixture

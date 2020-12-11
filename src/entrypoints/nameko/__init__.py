@@ -1,6 +1,7 @@
 import json
 from typing import List
 
+from nameko.events import EventDispatcher
 from nameko.web.handlers import http
 from nameko_sqlalchemy import Database
 from werkzeug.wrappers import Request, Response
@@ -12,12 +13,14 @@ from src.domain.factories import RestaurantFactory
 from src.domain.serializers import restaurant_serializer
 from src.infrastructure.db.setup import Base
 from src.infrastructure.db.repository import SQLAlchemyRestaurantRepository
+from src.infrastructure.events.nameko_publisher import NamekoEventPublisher
 
 
 class BookingService:
     name = "booking_service"
 
     db = Database(Base)
+    dispatcher = EventDispatcher()
 
     @http("GET", "/up")
     def up(self, request: Request) -> Response:
@@ -47,6 +50,7 @@ class BookingService:
         booking_table_service = BookingTableApplicationService(
             SQLAlchemyRestaurantRepository(self.db.session),
             SQLAlchemyUnitOfWork(self.db.session),
+            NamekoEventPublisher(self.dispatcher),
         )
         booking_table_service.book_table(command)
         return Response(f"Restaurant: {restaurant_id} table booked")
