@@ -5,8 +5,10 @@ from nameko.web.handlers import http
 from nameko_sqlalchemy import Database
 from werkzeug.wrappers import Request, Response
 
+from src.application.services.booking_table import BookingTableApplicationService
+from src.domain.commands import BookTable
 from src.domain.factories import RestaurantFactory
-from src.domain.serializers import restaurant_serializer, table_serializer
+from src.domain.serializers import restaurant_serializer
 from src.infrastructure.db.setup import Base
 from src.infrastructure.db.repository import SQLAlchemyRestaurantRepository
 
@@ -38,13 +40,12 @@ class BookingService:
     @http("POST", "/restaurants/<int:restaurant_id>")
     def book_table(self, request: Request, restaurant_id: int) -> Response:
         request_params = json.loads(request.data)
-        persons: int = request_params.get("persons")
-        repo = SQLAlchemyRestaurantRepository(self.db.session)
-        restaurant = repo.get(restaurant_id)
-        if not restaurant:
-            raise Exception("NotExist")
-        table = restaurant.book_table(persons)
-        self.db.session.commit()
-        return Response(
-            f"Restaurant: {restaurant.id} table booked: {table_serializer(table)}"
+        command = BookTable(
+            restaurant_id=restaurant_id, persons=request_params["persons"]
         )
+        booking_table_service = BookingTableApplicationService(
+            SQLAlchemyRestaurantRepository(self.db.session)
+        )
+        booking_table_service.book_table(command)
+        self.db.session.commit()
+        return Response(f"Restaurant: {restaurant_id} table booked")
