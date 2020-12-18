@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import List, Optional
 
 from .table import Table, BookedTableException
@@ -9,6 +10,7 @@ from ..value_objects import RestaurantId
 class Restaurant(DomainEventMixin):
     def __init__(self, restaurant_id: RestaurantId, tables: List[Table]):
         super().__init__()
+        self.id = restaurant_id
         self.tables = sorted(tables, key=lambda table: table.max_persons)
 
     def _get_open_table(self, persons: int) -> Optional[Table]:
@@ -26,6 +28,12 @@ class Restaurant(DomainEventMixin):
         table = self._get_open_table(persons)
         if table:
             table.book(persons)
-            self._record_event(BookedTableEvent(is_open=False))
+            self._record_event(
+                BookedTableEvent(
+                    table_id=table.id,
+                    restaurant_id=self.id,
+                    booked_at=datetime.utcnow(),
+                )
+            )
             return table
         raise BookedTableException("No open tables in restaurant")
