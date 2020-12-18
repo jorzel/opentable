@@ -1,1 +1,2 @@
 RestaurantId = int
+TableId = int

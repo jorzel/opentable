@@ -3,10 +3,11 @@ from typing import List, Optional
 from .table import Table, BookedTableException
 from ..events import DomainEventMixin
 from ..events.table import BookedTableEvent
+from ..value_objects import RestaurantId
 
 
 class Restaurant(DomainEventMixin):
-    def __init__(self, tables: List[Table]):
+    def __init__(self, restaurant_id: RestaurantId, tables: List[Table]):
         super().__init__()
         self.tables = sorted(tables, key=lambda table: table.max_persons)
 

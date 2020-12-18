@@ -1,3 +1,6 @@
+from ..value_objects import TableId
+
+
 class TablePersonsException(Exception):
     pass
 
@@ -7,7 +10,8 @@ class BookedTableException(Exception):
 
 
 class Table:
-    def __init__(self, max_persons: int, is_open: bool = True):
+    def __init__(self, table_id: TableId, max_persons: int, is_open: bool = True):
+        self.id = table_id
         if max_persons < 0:
             raise TablePersonsException(
                 f"Table max_persons attribute must be positive integer, passed instead: {max_persons}"
