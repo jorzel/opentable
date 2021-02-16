@@ -43,14 +43,3 @@ def booking_service(db_session):
     mock_db = Mock()
     mock_db.session = db_session
     yield worker_factory(BookingService, db=mock_db, dispatcher=Mock())
-
-
-@pytest.fixture
-def dbrow_factory():
-    def _dbrow_factory(factory, session, **kwargs):
-        instance = factory(**kwargs)
-        session.add(instance)
-        session.flush()
-        return instance
-
-    yield _dbrow_factory

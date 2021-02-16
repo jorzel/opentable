@@ -1,21 +1,25 @@
 from unittest.mock import ANY
 
+from src.infrastructure.db.repository import SQLAlchemyRestaurantRepository
+
 
 def test_nameko_booking_service_book_table_should_pass_when_table_in_restaurant_is_available(
-    booking_service, dbrow_factory, restaurant_factory, table_factory, request_factory
+    booking_service,
+    restaurant_factory,
+    table_factory,
+    request_factory,
+    db_session,
 ):
-    session = booking_service.db.session
     request = request_factory(json={"persons": 2})
-    table = dbrow_factory(
-        table_factory, session, table_id=1, max_persons=5, is_open=True
-    )
-    restaurant = dbrow_factory(
-        restaurant_factory, session, restaurant_id=1, tables=[table]
+    repository = SQLAlchemyRestaurantRepository(db_session)
+    table = table_factory(table_id=1, max_persons=5, is_open=True)
+    restaurant = restaurant_factory(
+        restaurant_id=1, tables=[table], repository=repository
     )
 
     booking_service.book_table(request, restaurant.id)
 
-    assert not session.dirty
+    assert not db_session.dirty
     assert table.is_open is False
     booking_service.dispatcher.assert_called_once_with(
         "BookedTable",
