@@ -1,8 +1,10 @@
-from sqlalchemy import Column, ForeignKey, Table as sa_Table, Integer, Boolean
+from sqlalchemy import Boolean, Column, ForeignKey, Integer
+from sqlalchemy import Table as sa_Table
 from sqlalchemy.orm import mapper, relationship
 
-from src.domain.entities.table import Table
 from src.domain.entities.restaurant import Restaurant
+from src.domain.entities.table import Table
+
 from .setup import metadata
 
 restaurant = sa_Table(

@@ -1,6 +1,6 @@
 from typing import List, Optional
 
-from sqlalchemy.orm import Session, Query
+from sqlalchemy.orm import Query, Session
 
 from ...domain.entities.restaurant import Restaurant
 

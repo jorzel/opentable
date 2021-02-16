@@ -1,10 +1,10 @@
 from datetime import datetime
 from typing import List, Optional
 
-from .table import Table, BookedTableException
 from ..events import DomainEventMixin
 from ..events.table import BookedTableEvent
 from ..value_objects import RestaurantId
+from .table import BookedTableException, Table
 
 
 class Restaurant(DomainEventMixin):

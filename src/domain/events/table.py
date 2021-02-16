@@ -1,8 +1,8 @@
-from datetime import datetime
 from dataclasses import dataclass
+from datetime import datetime
 
-from . import DomainEvent
 from ..value_objects import RestaurantId, TableId
+from . import DomainEvent
 
 
 @dataclass

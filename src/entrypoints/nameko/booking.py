@@ -6,11 +6,11 @@ from nameko_sqlalchemy import Database
 from werkzeug.wrappers import Request, Response
 
 from src.application.services.booking_table import BookingTableApplicationService
-from src.application.uow import SQLAlchemyUnitOfWork
 from src.domain.commands import BookTable
 from src.domain.serializers import restaurant_serializer
-from src.infrastructure.db.setup import Base
 from src.infrastructure.db.repository import SQLAlchemyRestaurantRepository
+from src.infrastructure.db.setup import Base
+from src.infrastructure.db.uow import SQLAlchemyUnitOfWork
 from src.infrastructure.events.nameko_publisher import NamekoEventPublisher
 
 
