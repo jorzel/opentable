@@ -1,9 +1,9 @@
 from typing import List, Optional
 
 import pytest
-
 from src.domain.entities.restaurant import Restaurant
 from src.domain.entities.table import Table
+from src.infrastructure.memory.repository import RestaurantRepository
 
 
 @pytest.fixture
@@ -16,9 +16,16 @@ def table_factory():
 
 @pytest.fixture
 def restaurant_factory():
-    def _restaurant_factory(restaurant_id: int, tables: Optional[List[Table]] = None):
+    def _restaurant_factory(
+        restaurant_id: int,
+        tables: Optional[List[Table]] = None,
+        repository: RestaurantRepository = RestaurantRepository(),
+    ):
         if not tables:
             tables = []
-        return Restaurant(restaurant_id, tables)
+
+        restaurant = Restaurant(restaurant_id, tables)
+        repository.add(restaurant)
+        return restaurant
 
     yield _restaurant_factory

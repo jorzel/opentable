@@ -1,6 +1,7 @@
-from src.domain.events.publisher import EventPublisher
 from src.domain.commands import BookTable
+from src.domain.events.publisher import EventPublisher
 from src.domain.repository import RestaurantRepository
+
 from ..uow import UnitOfWork
 
 

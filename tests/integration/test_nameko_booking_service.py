@@ -1,7 +1,7 @@
 from unittest.mock import ANY
 
 
-def test_booking_service_book_table_should_pass_when_table_in_restaurant_is_available(
+def test_nameko_booking_service_book_table_should_pass_when_table_in_restaurant_is_available(
     booking_service, dbrow_factory, restaurant_factory, table_factory, request_factory
 ):
     session = booking_service.db.session

@@ -15,10 +15,6 @@ class UnitOfWork(ABC):
         pass
 
 
-class FakeUnitOfWork(UnitOfWork):
-    pass
-
-
 class SQLAlchemyUnitOfWork(UnitOfWork):
     def __init__(self, session):
         self.session = session
