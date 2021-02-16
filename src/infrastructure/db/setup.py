@@ -7,4 +7,4 @@ engine = create_engine(SQLALCHEMY_DATABASE_URI)
 metadata = MetaData(bind=engine)
 Base = declarative_base(metadata=metadata)
 
-from .orm import Restaurant, Table
+# from .orm import Restaurant, Table

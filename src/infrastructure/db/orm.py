@@ -21,9 +21,11 @@ table = sa_Table(
     Column("is_open", Boolean),
 )
 
-mapper(
-    Restaurant,
-    restaurant,
-    properties={"tables": relationship(Table, backref="restaurant")},
-)
-mapper(Table, table)
+
+def run_mappers():
+    mapper(
+        Restaurant,
+        restaurant,
+        properties={"tables": relationship(Table, backref="restaurant")},
+    )
+    mapper(Table, table)
