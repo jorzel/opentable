@@ -1,6 +1,6 @@
 from unittest.mock import ANY
 
-from src.infrastructure.db.repository import SQLAlchemyRestaurantRepository
+from src.infrastructure.db.sqlalchemy.repository import SQLAlchemyRestaurantRepository
 
 
 def test_nameko_booking_service_book_table_should_pass_when_table_in_restaurant_is_available(

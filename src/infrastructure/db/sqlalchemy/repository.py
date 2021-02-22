@@ -2,7 +2,7 @@ from typing import List, Optional
 
 from sqlalchemy.orm import Query, Session
 
-from ...domain.entities.restaurant import Restaurant
+from src.domain.entities.restaurant import Restaurant
 
 
 class SQLAlchemyRestaurantRepository:

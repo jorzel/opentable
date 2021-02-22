@@ -5,7 +5,7 @@ from nameko.testing.services import worker_factory
 from sqlalchemy.orm import sessionmaker
 
 from src.infrastructure.api.nameko import BookingService
-from src.infrastructure.db.setup import metadata, engine
+from src.infrastructure.db.sqlalchemy.setup import metadata, engine
 from tests.utils import RequestFactory
 
 
