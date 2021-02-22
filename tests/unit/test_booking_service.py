@@ -4,8 +4,8 @@ import pytest
 from src.application.services.booking_table import BookingTableApplicationService
 from src.domain.commands import BookTable
 from src.domain.events.table import BookedTableEvent
-from src.infrastructure.memory.repository import MemoryRestaurantRepository
-from src.infrastructure.memory.uow import FakeUnitOfWork
+from src.infrastructure.db.memory.repository import MemoryRestaurantRepository
+from src.infrastructure.db.memory.uow import FakeUnitOfWork
 
 
 @pytest.fixture

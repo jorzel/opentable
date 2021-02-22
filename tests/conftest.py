@@ -1,12 +1,10 @@
 from typing import List, Optional
 
 import pytest
+from src.domain.repository import RestaurantRepository
 from src.domain.entities.restaurant import Restaurant
 from src.domain.entities.table import Table
-from src.infrastructure.memory.repository import (
-    RestaurantRepository,
-    MemoryRestaurantRepository,
-)
+from src.infrastructure.db.memory.repository import MemoryRestaurantRepository
 
 
 @pytest.fixture
