@@ -2,7 +2,7 @@ from unittest.mock import ANY, Mock
 
 import pytest
 from src.application.services.booking_table import BookingTableApplicationService
-from src.domain.commands import BookTable
+from src.domain.commands import BookTableCommand
 from src.domain.events.table import BookedTableEvent
 from src.infrastructure.db.memory.repository import MemoryRestaurantRepository
 from src.infrastructure.db.memory.uow import FakeUnitOfWork
@@ -26,7 +26,7 @@ def test_booking_service_book_table_should_pass_when_table_in_restaurant_is_avai
     restaurant = restaurant_factory(
         restaurant_id=1, tables=[table], repository=repository
     )
-    command = BookTable(restaurant.id, persons=2)
+    command = BookTableCommand(restaurant.id, persons=2)
 
     booking_service.book_table(command)
 

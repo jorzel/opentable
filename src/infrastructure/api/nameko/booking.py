@@ -6,7 +6,7 @@ from nameko_sqlalchemy import Database
 from werkzeug.wrappers import Request, Response
 
 from src.application.services.booking_table import BookingTableApplicationService
-from src.domain.commands import BookTable
+from src.domain.commands import BookTableCommand
 from src.domain.serializers import restaurant_serializer
 from src.infrastructure.db.sqlalchemy.repository import SQLAlchemyRestaurantRepository
 from src.infrastructure.db.sqlalchemy.setup import Base
@@ -32,7 +32,7 @@ class BookingService:
     @http("POST", "/restaurants/<int:restaurant_id>")
     def book_table(self, request: Request, restaurant_id: int) -> Response:
         request_params = json.loads(request.data)
-        command = BookTable(
+        command = BookTableCommand(
             restaurant_id=restaurant_id, persons=request_params["persons"]
         )
         booking_table_service = BookingTableApplicationService(

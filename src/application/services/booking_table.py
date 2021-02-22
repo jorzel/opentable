@@ -1,8 +1,8 @@
-from src.domain.commands import BookTable
+from src.domain.commands import BookTableCommand
 from src.domain.events.publisher import EventPublisher
 from src.domain.repository import RestaurantRepository
 
-from ..uow import UnitOfWork
+from src.application.uow import UnitOfWork
 
 
 class RestaurantNotExist(Exception):
@@ -20,7 +20,7 @@ class BookingTableApplicationService:
         self._uow = unit_of_work
         self._event_publisher = event_publisher
 
-    def book_table(self, command: BookTable) -> None:
+    def book_table(self, command: BookTableCommand) -> None:
         restaurant = self._restaurant_repository.get(command.restaurant_id)
         if not restaurant:
             raise RestaurantNotExist

@@ -9,6 +9,6 @@ class Command:
 
 
 @dataclass(frozen=True)
-class BookTable(Command):
+class BookTableCommand(Command):
     restaurant_id: RestaurantId
     persons: int
