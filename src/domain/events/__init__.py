@@ -1,12 +1,16 @@
-from dataclasses import dataclass
-from typing import List
+from dataclasses import dataclass, asdict
+from typing import Dict, List
 
 
 @dataclass(frozen=True)
 class DomainEvent:
+    name = ""
+
     @property
-    def name(self):
-        return self.__class__.__name__.replace("Event", "")
+    def as_dict(self) -> Dict:
+        serialized = asdict(self)
+        serialized["name"] = self.name
+        return serialized
 
 
 class DomainEventMixin:

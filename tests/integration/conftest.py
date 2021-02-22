@@ -4,7 +4,7 @@ import pytest
 from nameko.testing.services import worker_factory
 from sqlalchemy.orm import sessionmaker
 
-from src.infrastructure.api.nameko import BookingService
+from src.infrastructure.api.nameko import AuditService, BookingService
 from src.infrastructure.db.sqlalchemy.setup import metadata, engine
 from tests.utils import RequestFactory
 
@@ -43,3 +43,8 @@ def booking_service(db_session):
     mock_db = Mock()
     mock_db.session = db_session
     yield worker_factory(BookingService, db=mock_db, dispatcher=Mock())
+
+
+@pytest.fixture
+def audit_service():
+    yield worker_factory(AuditService)

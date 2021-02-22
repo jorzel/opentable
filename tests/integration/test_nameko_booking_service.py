@@ -22,6 +22,11 @@ def test_nameko_booking_service_book_table_should_pass_when_table_in_restaurant_
     assert not db_session.dirty
     assert table.is_open is False
     booking_service.dispatcher.assert_called_once_with(
-        "BookedTable",
-        {"table_id": table.id, "restaurant_id": restaurant.id, "booked_at": ANY},
+        "booked_table",
+        {
+            "table_id": table.id,
+            "restaurant_id": restaurant.id,
+            "booked_at": ANY,
+            "name": "booked_table",
+        },
     )

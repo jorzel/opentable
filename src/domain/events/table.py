@@ -7,6 +7,8 @@ from . import DomainEvent
 
 @dataclass
 class BookedTableEvent(DomainEvent):
+    name = "booked_table"
+
     table_id: TableId
     restaurant_id: RestaurantId
     booked_at: datetime

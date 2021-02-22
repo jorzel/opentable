@@ -1,4 +1,3 @@
-from dataclasses import asdict
 from typing import List
 
 from nameko.events import EventDispatcher
@@ -13,4 +12,4 @@ class NamekoEventPublisher(EventPublisher):
 
     def publish(self, events: List[DomainEvent]) -> None:
         for event in events:
-            self._dispatcher(event.name, asdict(event))
+            self._dispatcher(event.name, event.as_dict)
