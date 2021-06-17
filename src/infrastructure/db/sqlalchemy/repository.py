@@ -3,9 +3,10 @@ from typing import List, Optional
 from sqlalchemy.orm import Query, Session
 
 from src.domain.entities.restaurant import Restaurant
+from src.domain.repository import RestaurantRepository
 
 
-class SQLAlchemyRestaurantRepository:
+class SQLAlchemyRestaurantRepository(RestaurantRepository):
     def __init__(self, session: Session):
         self.session = session
 

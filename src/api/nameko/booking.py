@@ -20,15 +20,6 @@ class BookingService:
     db = Database(Base)
     dispatcher = EventDispatcher()
 
-    @http("GET", "/up")
-    def up(self, request: Request) -> Response:
-        return Response("I'm alive")
-
-    @http("GET", "/restaurants")
-    def restaurants(self, request: Request) -> Response:
-        repo = SQLAlchemyRestaurantRepository(self.db.session)
-        return Response(json.dumps([restaurant_serializer(r) for r in repo.all()]))
-
     @http("POST", "/restaurants/<int:restaurant_id>")
     def book_table(self, request: Request, restaurant_id: int) -> Response:
         request_params = json.loads(request.data)
@@ -42,3 +33,12 @@ class BookingService:
         )
         booking_table_service.book_table(command)
         return Response(f"Restaurant: {restaurant_id} table booked")
+
+    @http("GET", "/up")
+    def up(self, request: Request) -> Response:
+        return Response("I'm alive")
+
+    @http("GET", "/restaurants")
+    def restaurants(self, request: Request) -> Response:
+        repo = SQLAlchemyRestaurantRepository(self.db.session)
+        return Response(json.dumps([restaurant_serializer(r) for r in repo.all()]))
