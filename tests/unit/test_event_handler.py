@@ -5,8 +5,9 @@ from src.application.handlers.events import handle_events
 
 
 def test_handler_handle_booked_table_event():
+    handlers = {BookedTableEvent.name: lambda x: "success"}
     event = BookedTableEvent(1, 1, datetime.now())
 
-    event_names = handle_events([event.as_dict])
+    event_names = handle_events(handlers, [event.as_dict])
 
-    assert event_names == [event.name]
+    assert event_names == ["success"]
