@@ -6,6 +6,11 @@ from src.domain.value_objects import RestaurantId
 
 
 class MemoryRestaurantRepository(RestaurantRepository):
+    """
+    Secondary adapter providing in-memory implementation for :class:`Restaurant`
+    instances storage
+    """
+
     def __init__(self):
         self._restaurants = {}
 

@@ -2,6 +2,11 @@ from src.application.uow import UnitOfWork
 
 
 class SQLAlchemyUnitOfWork(UnitOfWork):
+    """
+    Secondary adapter providing implementation of transaction management for
+    ORM SQLAlchemy
+    """
+
     def __init__(self, session):
         self.session = session
 

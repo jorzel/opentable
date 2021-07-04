@@ -7,6 +7,11 @@ from src.domain.repository import RestaurantRepository
 
 
 class SQLAlchemyRestaurantRepository(RestaurantRepository):
+    """
+    Secondary adapter providing ORM SQLAlchemy implementation for :class:`Restaurant`
+    instances storage
+    """
+
     def __init__(self, session: Session):
         self.session = session
 

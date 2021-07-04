@@ -7,6 +7,10 @@ from src.domain.events.publisher import EventPublisher
 
 
 class NamekoEventPublisher(EventPublisher):
+    """
+    Secondary port providing implementation of nameko event dispatcher.
+    """
+
     def __init__(self, dispatcher: EventDispatcher):
         self._dispatcher = dispatcher
 

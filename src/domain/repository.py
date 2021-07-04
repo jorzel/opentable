@@ -2,6 +2,10 @@ from abc import ABC, abstractmethod
 
 
 class RestaurantRepository(ABC):
+    """
+    Secondary port defining :class:`Restaurant` storage interface
+    """
+
     @abstractmethod
     def get(self, restaurant_id):
         pass

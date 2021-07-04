@@ -25,6 +25,9 @@ table = sa_Table(
 
 
 def run_mappers():
+    """
+    Provides mapping between db tables and domain models.
+    """
     mapper(
         Restaurant,
         restaurant,

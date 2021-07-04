@@ -10,6 +10,11 @@ class RestaurantNotExist(Exception):
 
 
 class BookingTableApplicationService:
+    """
+    Primary port (use case) defining how incoming requests can book table
+    providing `command`
+    """
+
     def __init__(
         self,
         restaurant_repository: RestaurantRepository,

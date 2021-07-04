@@ -2,6 +2,11 @@ from abc import ABC, abstractmethod
 
 
 class UnitOfWork(ABC):
+    """
+    Secondary port (interface) for transaction management (usually, but not only
+    database transactions)
+    """
+
     @abstractmethod
     def __enter__(self):
         pass
