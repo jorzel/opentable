@@ -2,11 +2,11 @@ from unittest.mock import ANY, Mock
 
 import pytest
 
-from src.application.services.booking_table import BookingTableApplicationService
-from src.domain.commands import BookTableCommand
-from src.domain.events.table import BookedTableEvent
-from src.infrastructure.db.memory.repository import MemoryRestaurantRepository
-from src.infrastructure.db.memory.uow import FakeUnitOfWork
+from application.services.booking_table import BookingTableApplicationService
+from domain.commands import BookTableCommand
+from domain.events.table import BookedTableEvent
+from infrastructure.db.memory.repository import MemoryRestaurantRepository
+from infrastructure.db.memory.uow import FakeUnitOfWork
 
 
 @pytest.fixture

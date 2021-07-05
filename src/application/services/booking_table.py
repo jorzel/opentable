@@ -1,7 +1,7 @@
-from src.application.uow import UnitOfWork
-from src.domain.commands import BookTableCommand
-from src.domain.events.publisher import EventPublisher
-from src.domain.repository import RestaurantRepository
+from application.uow import UnitOfWork
+from domain.commands import BookTableCommand
+from domain.events.publisher import EventPublisher
+from domain.repository import RestaurantRepository
 
 
 class RestaurantNotExist(Exception):

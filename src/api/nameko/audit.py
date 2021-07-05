@@ -2,8 +2,8 @@ from typing import Dict
 
 from nameko.events import event_handler
 
-from src.application.handlers.events import handle_events
-from src.infrastructure.events.local_handler import handlers
+from application.handlers.events import handle_events
+from infrastructure.events.local_handler import handlers
 
 
 class AuditService:

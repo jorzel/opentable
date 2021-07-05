@@ -5,13 +5,13 @@ from nameko.web.handlers import http
 from nameko_sqlalchemy import Database
 from werkzeug.wrappers import Request, Response
 
-from src.application.services.booking_table import BookingTableApplicationService
-from src.domain.commands import BookTableCommand
-from src.domain.serializers import restaurant_serializer
-from src.infrastructure.db.sqlalchemy.repository import SQLAlchemyRestaurantRepository
-from src.infrastructure.db.sqlalchemy.setup import Base
-from src.infrastructure.db.sqlalchemy.uow import SQLAlchemyUnitOfWork
-from src.infrastructure.events.nameko_publisher import NamekoEventPublisher
+from application.services.booking_table import BookingTableApplicationService
+from domain.commands import BookTableCommand
+from domain.serializers import restaurant_serializer
+from infrastructure.db.sqlalchemy.repository import SQLAlchemyRestaurantRepository
+from infrastructure.db.sqlalchemy.setup import Base
+from infrastructure.db.sqlalchemy.uow import SQLAlchemyUnitOfWork
+from infrastructure.events.nameko_publisher import NamekoEventPublisher
 
 
 class BookingService:

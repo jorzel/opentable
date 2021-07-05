@@ -4,8 +4,8 @@ import pytest
 from nameko.testing.services import worker_factory
 from sqlalchemy.orm import sessionmaker
 
-from src.api.nameko import AuditService, BookingService
-from src.infrastructure.db.sqlalchemy.setup import engine, metadata
+from api.nameko import AuditService, BookingService
+from infrastructure.db.sqlalchemy.setup import engine, metadata
 from tests.utils import RequestFactory
 
 
