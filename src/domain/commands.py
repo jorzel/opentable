@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from src.domain.value_objects import RestaurantId
+from domain.value_objects import RestaurantId
 
 
 @dataclass(frozen=True)

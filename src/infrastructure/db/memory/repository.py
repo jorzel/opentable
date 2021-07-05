@@ -1,8 +1,8 @@
 from typing import List, Optional
 
-from src.domain.entities.restaurant import Restaurant
-from src.domain.repository import RestaurantRepository
-from src.domain.value_objects import RestaurantId
+from domain.entities.restaurant import Restaurant
+from domain.repository import RestaurantRepository
+from domain.value_objects import RestaurantId
 
 
 class MemoryRestaurantRepository(RestaurantRepository):

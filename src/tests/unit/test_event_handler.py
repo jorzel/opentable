@@ -1,7 +1,7 @@
 from datetime import datetime
 
-from src.domain.events.table import BookedTableEvent
-from src.application.handlers.events import handle_events
+from application.handlers.events import handle_events
+from domain.events.table import BookedTableEvent
 
 
 def test_handler_handle_booked_table_event():

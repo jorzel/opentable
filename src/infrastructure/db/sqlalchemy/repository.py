@@ -2,8 +2,8 @@ from typing import List, Optional
 
 from sqlalchemy.orm import Query, Session
 
-from src.domain.entities.restaurant import Restaurant
-from src.domain.repository import RestaurantRepository
+from domain.entities.restaurant import Restaurant
+from domain.repository import RestaurantRepository
 
 
 class SQLAlchemyRestaurantRepository(RestaurantRepository):

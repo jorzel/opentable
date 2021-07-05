@@ -1,7 +1,7 @@
 import logging
-from typing import Dict, List, Any
+from typing import Any, Dict, List
 
-from src.domain.events.table import DomainEvent
+from domain.events.table import DomainEvent
 
 logger = logging.getLogger(__name__)
 

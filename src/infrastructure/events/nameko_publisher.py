@@ -2,8 +2,8 @@ from typing import List
 
 from nameko.events import EventDispatcher
 
-from src.domain.events import DomainEvent
-from src.domain.events.publisher import EventPublisher
+from domain.events import DomainEvent
+from domain.events.publisher import EventPublisher
 
 
 class NamekoEventPublisher(EventPublisher):

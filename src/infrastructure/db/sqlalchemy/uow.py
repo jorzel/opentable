@@ -1,4 +1,4 @@
-from src.application.uow import UnitOfWork
+from application.uow import UnitOfWork
 
 
 class SQLAlchemyUnitOfWork(UnitOfWork):

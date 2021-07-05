@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from src.domain.events.table import BookedTableEvent
+from domain.events.table import BookedTableEvent
 
 
 def test_audit_service_can_handle_booked_table_event(audit_service):

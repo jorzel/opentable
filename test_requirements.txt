@@ -1,1 +1,6 @@
+black==21.6b0
+flake8==3.8.4
+isort[colors]==5.7.0
+mypy==0.800
 pytest==6.1.2
+pre-commit==2.13.0

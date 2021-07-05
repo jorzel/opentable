@@ -1,0 +1,6 @@
+[tool.black]
+skip-string-normalization = false
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
