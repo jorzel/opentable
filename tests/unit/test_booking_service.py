@@ -1,6 +1,7 @@
 from unittest.mock import ANY, Mock
 
 import pytest
+
 from src.application.services.booking_table import BookingTableApplicationService
 from src.domain.commands import BookTableCommand
 from src.domain.events.table import BookedTableEvent

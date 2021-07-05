@@ -1,8 +1,8 @@
 from typing import List
 
+from src.application.handlers.events import handle_events
 from src.domain.events import DomainEvent
 from src.domain.events.publisher import EventPublisher
-from src.application.handlers.events import handle_events
 
 
 class LocalEventPublisher(EventPublisher):

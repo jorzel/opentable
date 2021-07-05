@@ -8,7 +8,23 @@ repos:
     -   id: end-of-file-fixer
     -   id: check-yaml
     -   id: check-added-large-files
--   repo: https://gitlab.com/pycqa/flake8
-    rev: 3.9.2
+-   repo: local
     hooks:
+    -   id: black
+        name: black
+        language: system
+        entry: black
+        args: ["--check"]
+        types: [python]
+    -   id: isort
+        name: isort
+        language: system
+        entry: isort
+        args: ["--check", "--diff", "--color"]
+        types: [python]
     -   id: flake8
+        name: flake8
+        language: system
+        entry: flake8
+        types: [python]
+        exclude: "migrations"

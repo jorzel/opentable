@@ -1,5 +1,5 @@
 import logging
-from typing import Dict, List, Any
+from typing import Any, Dict, List
 
 from src.domain.events.table import DomainEvent
 
