@@ -2,10 +2,9 @@ from unittest.mock import Mock
 
 import pytest
 from nameko.testing.services import worker_factory
-from sqlalchemy.orm import sessionmaker
 
 from src.api.nameko import AuditService, BookingService
-from src.infrastructure.db.sqlalchemy.setup import metadata, engine
+from src.infrastructure.db.sqlalchemy.setup import metadata, engine, session_factory
 from tests.utils import RequestFactory
 
 
@@ -16,21 +15,21 @@ def request_factory():
 
 @pytest.fixture(scope="session")
 def db_connection():
-    metadata.drop_all()
+    # metadata.drop_all()
     metadata.create_all()
     connection = engine.connect()
 
     yield connection
 
-    metadata.drop_all()
+    # metadata.drop_all()
     engine.dispose()
 
 
 @pytest.fixture
 def db_session(db_connection):
     transaction = db_connection.begin()
-    session = sessionmaker(bind=db_connection)
-    session = session()
+    Session = session_factory(db_connection)
+    session = Session()
 
     yield session
 
@@ -48,3 +47,21 @@ def booking_service(db_session):
 @pytest.fixture
 def audit_service():
     yield worker_factory(AuditService)
+
+
+# def override_db_session():
+#     Session = session_factory(engine)
+#     try:
+#         session = Session()
+#         yield session
+#     finally:
+#         session.close()
+
+
+# @pytest.fixture
+# def fastapi_testclient():
+#     metadata.drop_all()
+#     metadata.create_all()
+
+#     main.dependency_overrides[get_db_session] = override_db_session
+#     return TestClient(main)

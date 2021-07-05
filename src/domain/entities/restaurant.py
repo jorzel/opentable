@@ -8,6 +8,9 @@ from .table import BookedTableException, Table
 
 
 class Restaurant(DomainEventMixin):
+    def __repr__(self):
+        return f"{self.__class__.__name__}, id={self.id}"
+
     def __init__(self, restaurant_id: RestaurantId, tables: List[Table]):
         super().__init__()
         self.id = restaurant_id

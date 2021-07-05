@@ -29,7 +29,7 @@ class BookingTableApplicationService:
         restaurant = self._restaurant_repository.get(command.restaurant_id)
         if not restaurant:
             raise RestaurantNotExist
-
+        print(restaurant._events)
         with self._uow:
             restaurant.book_table(command.persons)
         self._event_publisher.publish(restaurant.events)
