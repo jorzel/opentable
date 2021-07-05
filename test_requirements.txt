@@ -1,1 +1,2 @@
 pytest==6.1.2
+pre-commit==2.13.0
