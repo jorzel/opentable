@@ -12,5 +12,5 @@ Create application in DDD style, trying to keep domain layer agnostic of externa
 ## Run tests
 ```
 >> pip install -r test_requirements.txt
->> pytest
+>> PYTHONPATH=src pytest
 ```
