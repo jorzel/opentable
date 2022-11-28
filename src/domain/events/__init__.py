@@ -2,7 +2,6 @@ from dataclasses import asdict, dataclass
 from typing import Dict, List
 
 
-@dataclass(frozen=True)
 class DomainEvent:
     name = ""
 
