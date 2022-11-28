@@ -22,5 +22,5 @@ The crucial thing here is that our application core does not have any knowledge 
 ## Run tests
 ```
 >> pip install -r test_requirements.txt
->> PYTHONPATH=src pytest
+>> pytest
 ```

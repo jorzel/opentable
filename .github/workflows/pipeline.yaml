@@ -1,19 +1,26 @@
-name: hello-world-example
-on:
-  push:
+name: Opentable CI testing pipeline
+
+on: [push]
+
 jobs:
-  say-hello:
+  build:
+
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.9"]
+
     steps:
-      -
-        name: Say Hello
-        run: echo "Hello world!"
-      -
-        name: Do stuff
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
         run: |
-          echo "Step 1..."
-          echo "Step 2..."
-          echo "Step 3..."
-      -
-        name: Say Goodbye
-        run: echo "Goodbye!"
+          python -m pip install --upgrade pip
+          pip install pytest
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Test with pytest
+        run: |
+          pytest
